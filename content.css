@@ -19,21 +19,18 @@ html [data-yuzetube-hidden="promotion"] {
   display: none !important;
 }
 html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #player-container-outer,
-html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #player-theater-container {
-  max-width: none !important;
-  width: 100% !important;
-}
-html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #columns {
-  max-width: 1500px !important;
-}
 html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #player-theater-container,
-html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #player-container-inner {
-  width: 100vw !important;
+html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #player-container-inner,
+html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #player {
+  width: 100% !important;
   max-width: none !important;
 }
-html.yuzetube-no-ambient #cinematics,
-html.yuzetube-no-ambient #player-container-outer .ytp-gradient-top,
-html.yuzetube-no-ambient #player-container-outer .ytp-gradient-bottom {
+html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #player-container-outer {
+  margin-inline: 0 !important;
+}
+html.yuzetube-no-ambient ytd-watch-flexy #cinematics,
+html.yuzetube-no-ambient ytd-watch-flexy #player-container-outer .ytp-gradient-top,
+html.yuzetube-no-ambient ytd-watch-flexy #player-container-outer .ytp-gradient-bottom {
   display: none !important;
 }
 html.yuzetube-rounded ytd-thumbnail,
@@ -52,8 +49,8 @@ html.yuzetube-compact-grid ytd-rich-grid-renderer {
   --ytd-rich-grid-items-per-row: 5 !important;
   --ytd-rich-grid-posts-per-row: 5 !important;
 }
-html.yuzetube-hide-comments ytd-comments,
-html.yuzetube-hide-comments #comments {
+html.yuzetube-hide-comments ytd-watch-flexy ytd-comments,
+html.yuzetube-hide-comments ytd-watch-flexy #comments {
   display: none !important;
 }
 html.yuzetube-reduce-motion *,
@@ -64,8 +61,8 @@ html.yuzetube-reduce-motion *::after {
   animation-iteration-count: 1 !important;
   transition-duration: 0.001ms !important;
 }
-html.yuzetube-compact-sidebar #guide,
-html.yuzetube-compact-sidebar #guide-content {
+html.yuzetube-compact-sidebar ytd-app #guide,
+html.yuzetube-compact-sidebar ytd-app #guide-content {
   width: 220px !important;
 }
 html.yuzetube-compact-sidebar ytd-guide-entry-renderer,
@@ -73,16 +70,13 @@ html.yuzetube-compact-sidebar ytd-mini-guide-entry-renderer {
   min-height: 38px !important;
   border-radius: 10px !important;
 }
-html.yuzetube-hide-related #related,
-html.yuzetube-hide-related #secondary {
+html.yuzetube-hide-related ytd-watch-flexy #related,
+html.yuzetube-hide-related ytd-watch-flexy #secondary {
   display: none !important;
 }
-html.yuzetube-hide-related #primary {
+html.yuzetube-hide-related ytd-watch-flexy #primary {
   max-width: 1100px !important;
   margin-inline: auto !important;
-}
-html.yuzetube-hide-related ytd-watch-flexy #columns {
-  display: block !important;
 }
 html.yuzetube-compact-sidebar ytd-guide-entry-renderer:hover,
 html.yuzetube-compact-sidebar ytd-mini-guide-entry-renderer:hover,
