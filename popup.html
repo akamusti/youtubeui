@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YüzeTube</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="panel">
+      <header class="hero">
+        <div class="brand-mark"><img src="icons/icon.svg" alt=""></div>
+        <div>
+          <p class="eyebrow">YOUTUBE ARAÇLARI</p>
+          <h1>YüzeTube</h1>
+          <p class="subtitle">Daha temiz. Daha sakin. Senin YouTube'un.</p>
+        </div>
+      </header>
+
+      <section class="status-card">
+        <div>
+          <strong>YüzeTube aktif</strong>
+          <span id="statusText">Ayarların YouTube'da uygulanıyor</span>
+        </div>
+        <label class="switch" aria-label="YüzeTube'u etkinleştir">
+          <input id="enabled" type="checkbox">
+          <span class="slider"></span>
+        </label>
+      </section>
+
+      <p class="section-title">Hızlı ayarlar</p>
+      <section class="settings" aria-label="Hızlı ayarlar">
+        <label class="setting">
+          <span class="setting-icon">◈</span>
+          <span class="setting-copy"><strong>Shorts'u gizle</strong><small>Akışta ve menüde Shorts görünmesin</small></span>
+          <input type="checkbox" data-setting="hideShorts" class="check">
+        </label>
+        <label class="setting">
+          <span class="setting-icon">✦</span>
+          <span class="setting-copy"><strong>Reklam ve promosyonları gizle</strong><small>İçerik dışı kartları daha az gör</small></span>
+          <input type="checkbox" data-setting="hidePromotions" class="check">
+        </label>
+        <label class="setting">
+          <span class="setting-icon">▣</span>
+          <span class="setting-copy"><strong>Sinema görünümü</strong><small>Video sayfasını daha ferah kullan</small></span>
+          <input type="checkbox" data-setting="theaterMode" class="check">
+        </label>
+        <label class="setting">
+          <span class="setting-icon">◌</span>
+          <span class="setting-copy"><strong>Ambiyans ışığını kapat</strong><small>Oynatıcı çevresindeki renk yayılımını azalt</small></span>
+          <input type="checkbox" data-setting="disableAmbient" class="check">
+        </label>
+      </section>
+      <p class="section-title">Arayüz dokunuşları</p>
+      <section class="settings" aria-label="Arayüz dokunuşları">
+        <label class="setting">
+          <span class="setting-icon">⌁</span>
+          <span class="setting-copy"><strong>Yuvarlak kartlar</strong><small>Küçük resimlere yumuşak köşeler ekle</small></span>
+          <input type="checkbox" data-setting="roundedCorners" class="check">
+        </label>
+        <label class="setting">
+          <span class="setting-icon">▦</span>
+          <span class="setting-copy"><strong>Sıkı ana sayfa ızgarası</strong><small>Ekranda daha fazla içerik göster</small></span>
+          <input type="checkbox" data-setting="compactGrid" class="check">
+        </label>
+        <label class="setting">
+          <span class="setting-icon">☷</span>
+          <span class="setting-copy"><strong>Yorumları gizle</strong><small>Video sayfasını daha odaklı tut</small></span>
+          <input type="checkbox" data-setting="hideComments" class="check">
+        </label>
+        <label class="setting">
+          <span class="setting-icon">≈</span>
+          <span class="setting-copy"><strong>Hareketleri azalt</strong><small>Geçişleri ve hover efektlerini sakinleştir</small></span>
+          <input type="checkbox" data-setting="reduceMotion" class="check">
+        </label>
+        <label class="setting">
+          <span class="setting-icon">◫</span>
+          <span class="setting-copy"><strong>Kompakt kenar çubuğu</strong><small>Gezinme alanını daha düzenli tut</small></span>
+          <input type="checkbox" data-setting="compactSidebar" class="check">
+        </label>
+        <label class="setting">
+          <span class="setting-icon">⊙</span>
+          <span class="setting-copy"><strong>Öneri panelini gizle</strong><small>Video sayfasında odağı oynatıcıya ver</small></span>
+          <input type="checkbox" data-setting="hideRelated" class="check">
+        </label>
+      </section>
+
+      <footer>
+        <span class="privacy"><span class="dot"></span> Cookie erişimi yok · Ayarlar cihazında kalır</span>
+        <button id="optionsButton" type="button">Tüm ayarlar <span>→</span></button>
+      </footer>
+      <p id="notYoutube" class="notice" hidden>YouTube sekmesi açık olduğunda ayarlar anında uygulanır.</p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

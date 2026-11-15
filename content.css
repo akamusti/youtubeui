@@ -1,0 +1,166 @@
+/* All rules are opt-in through classes set by content.js. Nothing touches cookies or requests. */
+html.yuzetube-hide-shorts ytd-rich-section-renderer:has(a[href^="/shorts/"]),
+html.yuzetube-hide-shorts ytd-reel-shelf-renderer,
+html.yuzetube-hide-shorts ytd-guide-entry-renderer:has(a[href^="/shorts/"]),
+html.yuzetube-hide-shorts ytd-mini-guide-entry-renderer:has(a[href^="/shorts/"]),
+html.yuzetube-hide-shorts ytd-search-refinement-card-renderer:has(a[href^="/shorts/"]) {
+  display: none !important;
+}
+html.yuzetube-hide-promotions ytd-ad-slot-renderer,
+html.yuzetube-hide-promotions ytd-promoted-sparkles-web-renderer,
+html.yuzetube-hide-promotions ytd-in-feed-ad-layout-renderer,
+html.yuzetube-hide-promotions ytd-banner-promo-renderer,
+html.yuzetube-hide-promotions ytd-statement-banner-renderer,
+html.yuzetube-hide-promotions ytd-mealbar-promo-renderer {
+  display: none !important;
+}
+html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #player-container-outer,
+html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #player-theater-container {
+  max-width: none !important;
+}
+html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #columns {
+  max-width: 1500px !important;
+}
+html.yuzetube-no-ambient #cinematics,
+html.yuzetube-no-ambient #player-container-outer .ytp-gradient-top,
+html.yuzetube-no-ambient #player-container-outer .ytp-gradient-bottom {
+  display: none !important;
+}
+html.yuzetube-rounded ytd-thumbnail,
+html.yuzetube-rounded ytd-thumbnail yt-img-shadow,
+html.yuzetube-rounded ytd-thumbnail img,
+html.yuzetube-rounded ytd-rich-item-renderer #content,
+html.yuzetube-rounded ytd-video-renderer #dismissible {
+  overflow: hidden !important;
+  border-radius: 12px !important;
+}
+html.yuzetube-rounded ytd-rich-item-renderer #content,
+html.yuzetube-rounded ytd-video-renderer #dismissible {
+  background: var(--ytd-rich-grid-background, transparent);
+}
+html.yuzetube-compact-grid ytd-rich-grid-renderer {
+  --ytd-rich-grid-items-per-row: 5 !important;
+  --ytd-rich-grid-posts-per-row: 5 !important;
+}
+html.yuzetube-hide-comments ytd-comments,
+html.yuzetube-hide-comments #comments {
+  display: none !important;
+}
+html.yuzetube-reduce-motion *,
+html.yuzetube-reduce-motion *::before,
+html.yuzetube-reduce-motion *::after {
+  scroll-behavior: auto !important;
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
+html.yuzetube-compact-sidebar #guide,
+html.yuzetube-compact-sidebar #guide-content {
+  width: 220px !important;
+}
+html.yuzetube-compact-sidebar ytd-guide-entry-renderer,
+html.yuzetube-compact-sidebar ytd-mini-guide-entry-renderer {
+  min-height: 38px !important;
+  border-radius: 10px !important;
+}
+html.yuzetube-hide-related #related,
+html.yuzetube-hide-related #secondary {
+  display: none !important;
+}
+html.yuzetube-hide-related #primary {
+  max-width: 1100px !important;
+  margin-inline: auto !important;
+}
+html.yuzetube-hide-related ytd-watch-flexy #columns {
+  display: block !important;
+}
+html.yuzetube-compact-sidebar ytd-guide-entry-renderer:hover,
+html.yuzetube-compact-sidebar ytd-mini-guide-entry-renderer:hover,
+html.yuzetube-rounded yt-chip-cloud-chip-renderer,
+html.yuzetube-rounded yt-button-shape {
+  border-radius: 999px !important;
+}
+html.yuzetube-readable-titles ytd-rich-grid-media #video-title,
+html.yuzetube-readable-titles ytd-video-renderer #video-title {
+  font-size: 15px !important;
+  line-height: 1.35 !important;
+  font-weight: 600 !important;
+}
+html.yuzetube-styled-controls ytd-button-renderer yt-button-shape,
+html.yuzetube-styled-controls yt-icon-button {
+  transition: background-color .18s ease, transform .18s ease !important;
+}
+html.yuzetube-styled-controls ytd-button-renderer:hover yt-button-shape,
+html.yuzetube-styled-controls yt-icon-button:hover {
+  transform: translateY(-1px);
+}
+html.yuzetube-theme-midnight {
+  --ytd-rich-grid-background: #0b1020 !important;
+  --yt-spec-base-background: #0b1020 !important;
+  --yt-spec-raised-background: #131a2d !important;
+  --yt-spec-text-primary: #eef3ff !important;
+}
+html.yuzetube-theme-rose {
+  --yt-spec-call-to-action: #ff5d7a !important;
+  --yt-spec-brand-button-background: #ff5d7a !important;
+  --yt-spec-brand-link-text: #ff8da0 !important;
+}
+html.yuzetube-theme-ocean {
+  --yt-spec-call-to-action: #43b9e8 !important;
+  --yt-spec-brand-button-background: #43b9e8 !important;
+  --yt-spec-brand-link-text: #72d2f3 !important;
+}
+html.yuzetube-rounded ytd-thumbnail-overlay-time-status-renderer {
+  border-radius: 6px !important;
+  padding: 3px 5px !important;
+  font-size: 11px !important;
+}
+html.yuzetube-rounded ytd-thumbnail-overlay-resume-playback-renderer {
+  height: 4px !important;
+  border-radius: 4px !important;
+}
+#yuzetube-shortcuts {
+  position: fixed;
+  z-index: 2147483647;
+  right: 24px;
+  bottom: 24px;
+  display: none;
+  width: 220px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 16px;
+  color: #f5f6f7;
+  background: rgba(25, 27, 32, .94);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, .35);
+  font: 12px/1.5 system-ui, sans-serif;
+  backdrop-filter: blur(18px);
+}
+#yuzetube-shortcuts[data-open] {
+  display: grid;
+  gap: 8px;
+}
+#yuzetube-shortcuts strong {
+  margin-bottom: 3px;
+  color: #ff7183;
+}
+#yuzetube-shortcuts span {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #c4c8d0;
+}
+#yuzetube-shortcuts kbd {
+  min-width: 22px;
+  padding: 1px 5px;
+  border: 1px solid #444a55;
+  border-radius: 5px;
+  color: #fff;
+  background: #2a2e36;
+  text-align: center;
+}
+html.yuzetube-route-change ytd-page-manager {
+  transition: opacity .12s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.yuzetube-route-change ytd-page-manager { transition: none; }
+}
