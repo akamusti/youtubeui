@@ -43,11 +43,5 @@ chrome.storage.onChanged.addListener((changes) => {
 });
 
 document.querySelector("#optionsButton").addEventListener("click", async () => {
-  const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
-  const tab = tabs[0];
-  if (!tab?.url?.startsWith("https://www.youtube.com/") && !tab?.url?.startsWith("https://m.youtube.com/")) {
-    document.querySelector("#notYoutube").hidden = false;
-    return;
-  }
   await chrome.tabs.create({ url: chrome.runtime.getURL("settings.html") });
 });

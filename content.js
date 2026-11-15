@@ -17,9 +17,14 @@ const DEFAULTS = {
   theme: "default",
 };
 
-const root = document.documentElement;
+let root = document.documentElement;
 
 function apply(config) {
+  root = document.documentElement;
+  if (!root) {
+    document.addEventListener("DOMContentLoaded", () => apply(config), { once: true });
+    return;
+  }
   const active = config.enabled !== false;
   root.classList.toggle("yuzetube-enabled", active);
   root.classList.toggle("yuzetube-hide-shorts", active && config.hideShorts);
@@ -60,7 +65,7 @@ function toggleShortcuts() {
       <span><kbd>R</kbd> Oynatma hızını değiştir</span>
       <span><kbd>Esc</kbd> Paneli kapat</span>
     `;
-    document.documentElement.appendChild(panel);
+    (document.documentElement || document.body).appendChild(panel);
   }
   panel.toggleAttribute("data-open");
 }
@@ -88,8 +93,10 @@ const navigationObserver = new MutationObserver(() => {
     lastUrl = location.href;
     chrome.storage.local.get(DEFAULTS, apply);
     setTimeout(() => chrome.storage.local.get(DEFAULTS, apply), 600);
-    root.classList.add("yuzetube-route-change");
-    requestAnimationFrame(() => root.classList.remove("yuzetube-route-change"));
+    if (root) {
+      root.classList.add("yuzetube-route-change");
+      requestAnimationFrame(() => root.classList.remove("yuzetube-route-change"));
+    }
   }
 });
 navigationObserver.observe(document, { subtree: true, childList: true });
