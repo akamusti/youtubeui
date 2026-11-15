@@ -14,12 +14,22 @@ html.yuzetube-hide-promotions ytd-statement-banner-renderer,
 html.yuzetube-hide-promotions ytd-mealbar-promo-renderer {
   display: none !important;
 }
+html [data-yuzetube-hidden="shorts"],
+html [data-yuzetube-hidden="promotion"] {
+  display: none !important;
+}
 html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #player-container-outer,
 html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #player-theater-container {
   max-width: none !important;
+  width: 100% !important;
 }
 html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #columns {
   max-width: 1500px !important;
+}
+html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #player-theater-container,
+html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #player-container-inner {
+  width: 100vw !important;
+  max-width: none !important;
 }
 html.yuzetube-no-ambient #cinematics,
 html.yuzetube-no-ambient #player-container-outer .ytp-gradient-top,

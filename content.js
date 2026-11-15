@@ -18,29 +18,35 @@ const DEFAULTS = {
 };
 
 let root = document.documentElement;
+let currentConfig = DEFAULTS;
+let refreshQueued = false;
 
 function apply(config) {
+  currentConfig = { ...DEFAULTS, ...config };
   root = document.documentElement;
   if (!root) {
     document.addEventListener("DOMContentLoaded", () => apply(config), { once: true });
     return;
   }
-  const active = config.enabled !== false;
+  const active = currentConfig.enabled !== false;
   root.classList.toggle("yuzetube-enabled", active);
-  root.classList.toggle("yuzetube-hide-shorts", active && config.hideShorts);
-  root.classList.toggle("yuzetube-hide-promotions", active && config.hidePromotions);
-  root.classList.toggle("yuzetube-theater", active && config.theaterMode);
-  root.classList.toggle("yuzetube-no-ambient", active && config.disableAmbient);
-  root.classList.toggle("yuzetube-rounded", active && config.roundedCorners);
-  root.classList.toggle("yuzetube-compact-grid", active && config.compactGrid);
-  root.classList.toggle("yuzetube-hide-comments", active && config.hideComments);
-  root.classList.toggle("yuzetube-reduce-motion", active && config.reduceMotion);
-  root.classList.toggle("yuzetube-compact-sidebar", active && config.compactSidebar);
-  root.classList.toggle("yuzetube-hide-related", active && config.hideRelated);
-  root.classList.toggle("yuzetube-readable-titles", active && config.readableTitles);
-  root.classList.toggle("yuzetube-styled-controls", active && config.styledControls);
-  root.dataset.yuzetubeTheme = active ? config.theme : "default";
-  applyVideoPreferences(active, config);
+  root.classList.toggle("yuzetube-hide-shorts", active && currentConfig.hideShorts);
+  root.classList.toggle("yuzetube-hide-promotions", active && currentConfig.hidePromotions);
+  root.classList.toggle("yuzetube-theater", active && currentConfig.theaterMode);
+  root.classList.toggle("yuzetube-no-ambient", active && currentConfig.disableAmbient);
+  root.classList.toggle("yuzetube-rounded", active && currentConfig.roundedCorners);
+  root.classList.toggle("yuzetube-compact-grid", active && currentConfig.compactGrid);
+  root.classList.toggle("yuzetube-hide-comments", active && currentConfig.hideComments);
+  root.classList.toggle("yuzetube-reduce-motion", active && currentConfig.reduceMotion);
+  root.classList.toggle("yuzetube-compact-sidebar", active && currentConfig.compactSidebar);
+  root.classList.toggle("yuzetube-hide-related", active && currentConfig.hideRelated);
+  root.classList.toggle("yuzetube-readable-titles", active && currentConfig.readableTitles);
+  root.classList.toggle("yuzetube-styled-controls", active && currentConfig.styledControls);
+  for (const theme of ["midnight", "rose", "ocean"]) {
+    root.classList.toggle(`yuzetube-theme-${theme}`, active && currentConfig.theme === theme);
+  }
+  applyVideoPreferences(active, currentConfig);
+  refreshDynamicUi();
 }
 
 function applyVideoPreferences(active, config) {
@@ -78,6 +84,30 @@ function cyclePlaybackRate() {
   video.playbackRate = next;
 }
 
+function refreshDynamicUi() {
+  if (refreshQueued) return;
+  refreshQueued = true;
+  requestAnimationFrame(() => {
+    refreshQueued = false;
+    const active = currentConfig.enabled !== false;
+    document.querySelectorAll("ytd-rich-section-renderer, ytd-reel-shelf-renderer").forEach((element) => {
+      const isShorts = element.querySelector('a[href^="/shorts/"]') !== null;
+      if (active && currentConfig.hideShorts && isShorts) {
+        element.setAttribute("data-yuzetube-hidden", "shorts");
+      } else if (element.getAttribute("data-yuzetube-hidden") === "shorts") {
+        element.removeAttribute("data-yuzetube-hidden");
+      }
+    });
+    document.querySelectorAll("ytd-ad-slot-renderer, ytd-in-feed-ad-layout-renderer, ytd-promoted-sparkles-web-renderer").forEach((element) => {
+      if (active && currentConfig.hidePromotions) {
+        element.setAttribute("data-yuzetube-hidden", "promotion");
+      } else if (element.getAttribute("data-yuzetube-hidden") === "promotion") {
+        element.removeAttribute("data-yuzetube-hidden");
+      }
+    });
+  });
+}
+
 document.addEventListener("keydown", (event) => {
   const target = event.target;
   if (target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target?.isContentEditable) return;
@@ -89,6 +119,7 @@ document.addEventListener("keydown", (event) => {
 // YouTube is a single-page app; this only nudges the layout after navigation.
 let lastUrl = location.href;
 const navigationObserver = new MutationObserver(() => {
+  refreshDynamicUi();
   if (location.href !== lastUrl) {
     lastUrl = location.href;
     chrome.storage.local.get(DEFAULTS, apply);
