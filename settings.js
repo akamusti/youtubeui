@@ -24,5 +24,8 @@ function render(config) {
   });
 }
 chrome.storage.local.get(DEFAULTS, render);
-inputs.forEach((input) => input.addEventListener("change", () => chrome.storage.local.set({ [input.dataset.setting]: input.checked })));
+inputs.forEach((input) => input.addEventListener("change", () => {
+  const value = input.type === "checkbox" ? input.checked : input.value;
+  chrome.storage.local.set({ [input.dataset.setting]: value });
+}));
 chrome.storage.onChanged.addListener(() => chrome.storage.local.get(DEFAULTS, render));

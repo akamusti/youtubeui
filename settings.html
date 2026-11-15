@@ -9,13 +9,15 @@
   <body>
     <main>
       <header><img src="icons/icon.svg" alt=""><div><p>YOUTUBE ARAÇLARI</p><h1>YüzeTube ayarları</h1></div></header>
-      <section class="intro"><strong>Kontrol sende.</strong><span>Değişiklikler otomatik kaydedilir ve YouTube sekmelerine uygulanır.</span></section>
+      <section class="intro"><strong>Ayarlar</strong><span>Değişiklikler otomatik kaydedilir.</span></section>
       <section class="card">
+        <div class="group-title">Temel</div>
         <label><span><b>YüzeTube'u etkinleştir</b><small>Tüm görsel iyileştirmeleri açar</small></span><input type="checkbox" data-setting="enabled"></label>
         <label><span><b>Shorts'u gizle</b><small>Akıştaki Shorts raflarını ve kısayollarını kaldırır</small></span><input type="checkbox" data-setting="hideShorts"></label>
         <label><span><b>Reklam ve promosyonları gizle</b><small>Promosyon kartlarını arayüzden kaldırır</small></span><input type="checkbox" data-setting="hidePromotions"></label>
         <label><span><b>Sinema görünümü</b><small>Video sayfasında oynatıcıyı genişletir</small></span><input type="checkbox" data-setting="theaterMode"></label>
         <label><span><b>Ambiyans ışığını kapat</b><small>Oynatıcı çevresindeki renk efektini kapatır</small></span><input type="checkbox" data-setting="disableAmbient"></label>
+        <div class="group-title">Görünüm</div>
         <label><span><b>Yuvarlak kartlar</b><small>Küçük resimlere ve video kartlarına yumuşak köşeler ekler</small></span><input type="checkbox" data-setting="roundedCorners"></label>
         <label><span><b>Sıkı ana sayfa ızgarası</b><small>Geniş ekranlarda satır başına daha fazla video gösterir</small></span><input type="checkbox" data-setting="compactGrid"></label>
         <label><span><b>Yorumları gizle</b><small>Video sayfasını izlemeye odaklı hale getirir</small></span><input type="checkbox" data-setting="hideComments"></label>
@@ -26,6 +28,7 @@
         <label><span><b>Modern buton efektleri</b><small>Hover durumlarına yumuşak ve hafif geçişler ekler</small></span><input type="checkbox" data-setting="styledControls"></label>
       </section>
       <section class="card preferences">
+        <div class="group-title">Oynatıcı</div>
         <label><span><b>Varsayılan oynatma hızı</b><small>Yeni videolar bu hızla başlar</small></span><select data-setting="playbackRate"><option value="1">1x</option><option value="1.25">1.25x</option><option value="1.5">1.5x</option><option value="1.75">1.75x</option><option value="2">2x</option></select></label>
         <label><span><b>Varsayılan ses seviyesi</b><small>Oynatıcı açıldığında kullanılacak seviye</small></span><input class="range" type="range" min="0" max="100" step="5" data-setting="defaultVolume"></label>
         <label><span><b>Renk teması</b><small>YouTube arayüzüne hafif bir renk karakteri verir</small></span><select data-setting="theme"><option value="default">Varsayılan</option><option value="midnight">Midnight</option><option value="rose">Rose</option><option value="ocean">Ocean</option></select></label>
