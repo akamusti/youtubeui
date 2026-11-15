@@ -13,10 +13,12 @@ const DEFAULTS = {
 };
 
 const enabled = document.querySelector("#enabled");
+const statusTitle = document.querySelector("#statusTitle");
 const statusText = document.querySelector("#statusText");
 
 function render(config) {
   enabled.checked = config.enabled;
+  statusTitle.textContent = config.enabled ? "YüzeTube aktif" : "YüzeTube duraklatıldı";
   statusText.textContent = config.enabled
     ? "Ayarların YouTube'da uygulanıyor"
     : "YüzeTube geçici olarak duraklatıldı";
@@ -42,6 +44,9 @@ chrome.storage.onChanged.addListener((changes) => {
   chrome.storage.local.get(DEFAULTS, render);
 });
 
-document.querySelector("#optionsButton").addEventListener("click", async () => {
+async function openSettings() {
   await chrome.tabs.create({ url: chrome.runtime.getURL("settings.html") });
-});
+}
+
+document.querySelector("#optionsButton").addEventListener("click", openSettings);
+document.querySelector("#advancedButton").addEventListener("click", openSettings);
