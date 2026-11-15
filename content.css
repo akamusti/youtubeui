@@ -1,9 +1,9 @@
 /* All rules are opt-in through classes set by content.js. Nothing touches cookies or requests. */
 html.yuzetube-hide-shorts ytd-rich-section-renderer:has(a[href^="/shorts/"]),
 html.yuzetube-hide-shorts ytd-reel-shelf-renderer,
-html.yuzetube-hide-shorts ytd-guide-entry-renderer:has(a[href^="/shorts/"]),
-html.yuzetube-hide-shorts ytd-mini-guide-entry-renderer:has(a[href^="/shorts/"]),
-html.yuzetube-hide-shorts ytd-search-refinement-card-renderer:has(a[href^="/shorts/"]) {
+html.yuzetube-hide-shorts ytd-guide-entry-renderer:has(a[href="/shorts"], a[href^="/shorts/"]),
+html.yuzetube-hide-shorts ytd-mini-guide-entry-renderer:has(a[href="/shorts"], a[href^="/shorts/"]),
+html.yuzetube-hide-shorts ytd-search-refinement-card-renderer:has(a[href="/shorts"], a[href^="/shorts/"]) {
   display: none !important;
 }
 html.yuzetube-hide-promotions ytd-ad-slot-renderer,
@@ -15,6 +15,7 @@ html.yuzetube-hide-promotions ytd-mealbar-promo-renderer {
   display: none !important;
 }
 html [data-yuzetube-hidden="shorts"],
+html [data-yuzetube-hidden="shorts-menu"],
 html [data-yuzetube-hidden="promotion"] {
   display: none !important;
 }

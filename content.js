@@ -98,6 +98,17 @@ function refreshDynamicUi() {
         element.removeAttribute("data-yuzetube-hidden");
       }
     });
+    document.querySelectorAll("ytd-guide-entry-renderer, ytd-mini-guide-entry-renderer").forEach((element) => {
+      const isShortsMenu = [...element.querySelectorAll("a[href]")].some((link) => {
+        const path = new URL(link.href, location.origin).pathname;
+        return path === "/shorts" || path.startsWith("/shorts/");
+      });
+      if (active && currentConfig.hideShorts && isShortsMenu) {
+        element.setAttribute("data-yuzetube-hidden", "shorts-menu");
+      } else if (element.getAttribute("data-yuzetube-hidden") === "shorts-menu") {
+        element.removeAttribute("data-yuzetube-hidden");
+      }
+    });
     document.querySelectorAll("ytd-ad-slot-renderer, ytd-in-feed-ad-layout-renderer, ytd-promoted-sparkles-web-renderer").forEach((element) => {
       if (active && currentConfig.hidePromotions) {
         element.setAttribute("data-yuzetube-hidden", "promotion");
