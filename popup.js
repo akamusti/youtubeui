@@ -17,6 +17,15 @@ const DEFAULTS = {
   hideEndCards: false,
   hideLiveChat: false,
   hideChips: false,
+  hideExtraRows: false,
+  hideEndOfVideo: false,
+  hidePlayables: false,
+  hideExploreLink: false,
+  hideNextButton: false,
+  centerPlayer: false,
+  hideSubShorts: false,
+  hidePlaylistSuggestions: false,
+  blockedKeywords: "",
 };
 
 const enabled = document.querySelector("#enabled");

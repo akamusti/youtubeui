@@ -26,3 +26,6 @@ input:checked::after { transform:translateX(14px); background:#fff; }
 select { min-width:90px; padding:6px 8px; border:1px solid var(--line); border-radius:7px; color:var(--text); background:#252932; font:inherit; }
 input.range { appearance:auto; width:105px; height:18px; flex:0 0 105px; margin:0; border-radius:0; background:transparent; accent-color:var(--accent); }
 input.range::after { display:none; }
+input.keyword { appearance:auto; width:190px; flex:0 0 190px; padding:6px 8px; border:1px solid var(--line); border-radius:7px; color:var(--text); background:#252932; font:inherit; }
+input.keyword::after { display:none; }
+input.keyword:checked { background:#252932; }

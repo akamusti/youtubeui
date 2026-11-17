@@ -19,6 +19,53 @@ html [data-yuzetube-hidden="shorts-menu"],
 html [data-yuzetube-hidden="promotion"] {
   display: none !important;
 }
+/* Extra homepage shelves (Shorts, Trending, movies, ...). */
+html.yuzetube-hide-extra-rows ytd-browse[page-subtype="home"] ytd-rich-grid-renderer > #contents > ytd-rich-section-renderer,
+html.yuzetube-hide-extra-rows ytd-browse[page-subtype="home"] ytd-reel-shelf-renderer,
+html.yuzetube-hide-extra-rows div[tab-identifier="FEwhat_to_watch"] ytm-reel-shelf-renderer {
+  display: none !important;
+}
+/* End-of-video suggestion wall (distinct from the info/end-screen cards). */
+html.yuzetube-hide-end-of-video .html5-endscreen,
+html.yuzetube-hide-end-of-video .ytp-fullscreen-grid-stills-container,
+html.yuzetube-hide-end-of-video .ytp-videowall-still,
+html.yuzetube-hide-end-of-video .ytp-modern-videowall-still {
+  display: none !important;
+}
+/* Elements marked dynamically by content.js. */
+html.yuzetube-hide-playables [data-yuzetube-hidden="playable"],
+html.yuzetube-hide-sub-shorts [data-yuzetube-hidden="sub-shorts"],
+html.yuzetube-hide-playlist-suggestions [data-yuzetube-hidden="playlist-suggestions"],
+html.yuzetube-keyword-filter [data-yuzetube-hidden="keyword"] {
+  display: none !important;
+}
+/* Explore / Trending link in the left navigation. */
+html.yuzetube-hide-explore-link a[href="/feed/trending"],
+html.yuzetube-hide-explore-link a[href="/feed/explore"],
+html.yuzetube-hide-explore-link ytd-guide-entry-renderer:has(a[href="/feed/trending"], a[href="/feed/explore"]),
+html.yuzetube-hide-explore-link ytd-mini-guide-entry-renderer:has(a[href="/feed/trending"], a[href="/feed/explore"]),
+html.yuzetube-hide-explore-link ytm-chip-cloud-chip-renderer[chip-style="STYLE_EXPLORE_LAUNCHER_CHIP"] {
+  display: none !important;
+}
+html.yuzetube-hide-next-button a.ytp-next-button,
+html.yuzetube-hide-next-button button.ytp-next-button {
+  display: none !important;
+}
+/* Center the player by removing the watch-page side panel. */
+html.yuzetube-center-player ytd-watch-flexy #secondary,
+html.yuzetube-center-player ytd-watch-flexy #related {
+  display: none !important;
+}
+html.yuzetube-center-player ytd-watch-flexy[flexy][is-two-columns_]:not([fullscreen]):not([theater]) #columns {
+  justify-content: center !important;
+}
+html.yuzetube-center-player ytd-watch-flexy[flexy][is-two-columns_]:not([fullscreen]):not([theater]) {
+  --ytd-watch-flexy-max-player-width: calc(var(--ytd-watch-flexy-chat-max-height) * var(--ytd-watch-flexy-width-ratio) / var(--ytd-watch-flexy-height-ratio)) !important;
+}
+html.yuzetube-center-player ytd-watch-flexy #primary {
+  max-width: min(100%, 1280px) !important;
+  margin-inline: auto !important;
+}
 /* Theater mode is enabled through YouTube's own player control in content.js.
    No layout override here, so the genuine player state is never fought. */
 html.yuzetube-hide-chips ytd-chip-cloud-renderer,

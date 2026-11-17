@@ -22,7 +22,40 @@ const DEFAULTS = {
   hideEndCards: false,
   hideLiveChat: false,
   hideChips: false,
+  hideExtraRows: false,
+  hideEndOfVideo: false,
+  hidePlayables: false,
+  hideExploreLink: false,
+  hideNextButton: false,
+  centerPlayer: false,
+  hideSubShorts: false,
+  hidePlaylistSuggestions: false,
+  blockedKeywords: "",
 };
+
+// One DOM element represents a video on each surface. Nested items are skipped
+// so hiding the outer one doesn't leave an empty grid slot.
+const KEYWORD_ITEM_SELECTOR = [
+  "ytd-rich-item-renderer",
+  "yt-lockup-view-model",
+  "ytm-shorts-lockup-view-model",
+  "ytd-video-renderer",
+  "ytd-compact-video-renderer",
+  "ytd-grid-video-renderer",
+  "ytd-channel-video-player-renderer",
+  ".ytp-videowall-still",
+  ".ytp-modern-videowall-still",
+].join(", ");
+const KEYWORD_TITLE_SELECTOR = [
+  ".ytLockupMetadataViewModelTitle",
+  ".shortsLockupViewModelHostMetadataTitle",
+  "#video-title",
+  "yt-formatted-string.title",
+  ".ytp-videowall-still-info-title",
+  ".ytp-modern-videowall-still-info-title",
+  ".ytp-ce-video-title",
+  ".ytp-ce-playlist-title",
+].join(", ");
 
 let root = document.documentElement;
 let currentConfig = DEFAULTS;
@@ -30,6 +63,8 @@ let refreshQueued = false;
 let playerSyncTimer = null;
 let lastVideoApplied = null;
 let theaterAppliedByUs = false;
+let keywordMatchers = [];
+let keywordSource = null;
 
 function apply(config) {
   currentConfig = { ...DEFAULTS, ...config };
@@ -56,6 +91,15 @@ function apply(config) {
   root.classList.toggle("yuzetube-hide-end-cards", active && currentConfig.hideEndCards);
   root.classList.toggle("yuzetube-hide-live-chat", active && currentConfig.hideLiveChat);
   root.classList.toggle("yuzetube-show-controls", active && currentConfig.alwaysShowControls);
+  root.classList.toggle("yuzetube-hide-extra-rows", active && currentConfig.hideExtraRows);
+  root.classList.toggle("yuzetube-hide-end-of-video", active && currentConfig.hideEndOfVideo);
+  root.classList.toggle("yuzetube-hide-playables", active && currentConfig.hidePlayables);
+  root.classList.toggle("yuzetube-hide-explore-link", active && currentConfig.hideExploreLink);
+  root.classList.toggle("yuzetube-hide-next-button", active && currentConfig.hideNextButton);
+  root.classList.toggle("yuzetube-center-player", active && currentConfig.centerPlayer);
+  root.classList.toggle("yuzetube-hide-sub-shorts", active && currentConfig.hideSubShorts);
+  root.classList.toggle("yuzetube-hide-playlist-suggestions", active && currentConfig.hidePlaylistSuggestions);
+  root.classList.toggle("yuzetube-keyword-filter", active && Boolean(currentConfig.blockedKeywords));
   for (const theme of ["midnight", "rose", "ocean"]) {
     root.classList.toggle(`yuzetube-theme-${theme}`, active && currentConfig.theme === theme);
   }
@@ -67,6 +111,35 @@ function apply(config) {
 
 function clamp01(value) {
   return Math.min(1, Math.max(0, value));
+}
+
+function setHidden(element, kind, shouldHide) {
+  if (!element) return;
+  const attribute = "data-yuzetube-hidden";
+  if (shouldHide) {
+    if (element.getAttribute(attribute) !== kind) element.setAttribute(attribute, kind);
+  } else if (element.getAttribute(attribute) === kind) {
+    element.removeAttribute(attribute);
+  }
+}
+
+function compileKeywords(source) {
+  const value = typeof source === "string" ? source : "";
+  if (value === keywordSource) return keywordMatchers;
+  keywordSource = value;
+  keywordMatchers = value
+    .split(/[\n,;]+/)
+    .map((term) => term.trim())
+    .filter(Boolean)
+    .map((term) => {
+      const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\\\*/g, ".*");
+      return new RegExp(escaped, "i");
+    });
+  return keywordMatchers;
+}
+
+function matchesKeyword(title, matchers) {
+  return matchers.some((matcher) => matcher.test(title));
 }
 
 function applyVideoPreferences(active, config) {
@@ -223,6 +296,40 @@ function refreshDynamicUi() {
         element.removeAttribute("data-yuzetube-hidden");
       }
     });
+
+    const onSubscriptions = Boolean(document.querySelector('ytd-browse[page-subtype="subscriptions"]'));
+    const subShorts = active && currentConfig.hideSubShorts && onSubscriptions;
+    document.querySelectorAll("ytd-grid-video-renderer, ytd-rich-item-renderer, ytd-rich-section-renderer, ytm-shorts-lockup-view-model").forEach((element) => {
+      const isSubShort = subShorts && (
+        element.matches("ytm-shorts-lockup-view-model") ||
+        element.querySelector('ytd-thumbnail-overlay-time-status-renderer[overlay-style="SHORTS"]') !== null ||
+        element.querySelector('a[href^="/shorts/"]') !== null
+      );
+      setHidden(element, "sub-shorts", isSubShort);
+    });
+
+    const playables = active && currentConfig.hidePlayables;
+    document.querySelectorAll("ytd-mini-game-card-view-model").forEach((card) => {
+      setHidden(card.closest("ytd-rich-section-renderer") || card, "playable", playables);
+    });
+
+    const playlistSuggestions = active && currentConfig.hidePlaylistSuggestions;
+    document.querySelectorAll('ytd-item-section-header-renderer[title-style="ITEM_SECTION_HEADER_TITLE_STYLE_PLAYLIST_RECOMMENDATIONS"]').forEach((header) => {
+      setHidden(header.closest("ytd-item-section-renderer"), "playlist-suggestions", playlistSuggestions);
+    });
+
+    const matchers = compileKeywords(active ? currentConfig.blockedKeywords : "");
+    if (matchers.length) {
+      document.querySelectorAll(KEYWORD_ITEM_SELECTOR).forEach((item) => {
+        if (item.parentElement?.closest(KEYWORD_ITEM_SELECTOR)) return;
+        const title = item.querySelector(KEYWORD_TITLE_SELECTOR)?.textContent || "";
+        setHidden(item, "keyword", matchesKeyword(title, matchers));
+      });
+    } else {
+      document.querySelectorAll('[data-yuzetube-hidden="keyword"]').forEach((element) => {
+        element.removeAttribute("data-yuzetube-hidden");
+      });
+    }
   });
 }
 
