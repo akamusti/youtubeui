@@ -3,56 +3,294 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>YüzeTube ayarları</title>
+    <title>YüzeTube · Ayarlar</title>
     <link rel="stylesheet" href="settings.css">
   </head>
   <body>
-    <main>
-      <header><img src="icons/icon.svg" alt=""><div><p>YOUTUBE ARAÇLARI</p><h1>YüzeTube ayarları</h1></div></header>
-      <section class="intro"><strong>Ayarlar</strong><span>Değişiklikler otomatik kaydedilir.</span></section>
-      <section class="card">
-        <div class="group-title">Temel</div>
-        <label><span><b>YüzeTube'u etkinleştir</b><small>Tüm görsel iyileştirmeleri açar</small></span><input type="checkbox" data-setting="enabled"></label>
-        <label><span><b>Shorts'u gizle</b><small>Akıştaki Shorts raflarını ve kısayollarını kaldırır</small></span><input type="checkbox" data-setting="hideShorts"></label>
-        <label><span><b>Reklam ve promosyonları gizle</b><small>Promosyon kartlarını arayüzden kaldırır</small></span><input type="checkbox" data-setting="hidePromotions"></label>
-        <label><span><b>Sinema görünümü</b><small>Video sayfasında oynatıcıyı genişletir</small></span><input type="checkbox" data-setting="theaterMode"></label>
-        <label><span><b>Ambiyans ışığını kapat</b><small>Oynatıcı çevresindeki renk efektini kapatır</small></span><input type="checkbox" data-setting="disableAmbient"></label>
-        <label><span><b>Otomatik oynatmayı kapat</b><small>Video bitince sonraki video kendiliğinden başlamaz</small></span><input type="checkbox" data-setting="disableAutoplay"></label>
-        <label><span><b>Videoları sessiz başlat</b><small>Yeni videolar sessiz açılır</small></span><input type="checkbox" data-setting="muteByDefault"></label>
-        <label><span><b>Videoları tekrarla</b><small>Video bitince başa döner</small></span><input type="checkbox" data-setting="loopVideos"></label>
-        <div class="group-title">Dikkat dağıtıcılar</div>
-        <label><span><b>Video sonu kartlarını gizle</b><small>Son ekran ve bilgi kartlarını kaldırır</small></span><input type="checkbox" data-setting="hideEndCards"></label>
-        <label><span><b>Canlı sohbeti gizle</b><small>Yayın ve premiyerlerde sohbet panelini kaldırır</small></span><input type="checkbox" data-setting="hideLiveChat"></label>
-        <label><span><b>Keşif çiplerini gizle</b><small>Ana sayfadaki kategori çubuklarını kaldırır</small></span><input type="checkbox" data-setting="hideChips"></label>
-        <div class="group-title">Görünüm</div>
-        <label><span><b>Yuvarlak kartlar</b><small>Küçük resimlere ve video kartlarına yumuşak köşeler ekler</small></span><input type="checkbox" data-setting="roundedCorners"></label>
-        <label><span><b>Sıkı ana sayfa ızgarası</b><small>Geniş ekranlarda satır başına daha fazla video gösterir</small></span><input type="checkbox" data-setting="compactGrid"></label>
-        <label><span><b>Yorumları gizle</b><small>Video sayfasını izlemeye odaklı hale getirir</small></span><input type="checkbox" data-setting="hideComments"></label>
-        <label><span><b>Hareketleri azalt</b><small>Geçiş ve hover animasyonlarını azaltır</small></span><input type="checkbox" data-setting="reduceMotion"></label>
-        <label><span><b>Kompakt kenar çubuğu</b><small>Sol gezinme alanını daha sıkı hale getirir</small></span><input type="checkbox" data-setting="compactSidebar"></label>
-        <label><span><b>Öneri panelini gizle</b><small>Video sayfasında sağdaki önerileri gizler</small></span><input type="checkbox" data-setting="hideRelated"></label>
-        <label><span><b>Okunaklı başlıklar</b><small>Video başlıklarını daha net ve rahat okunur yapar</small></span><input type="checkbox" data-setting="readableTitles"></label>
-        <label><span><b>Modern buton efektleri</b><small>Hover durumlarına yumuşak ve hafif geçişler ekler</small></span><input type="checkbox" data-setting="styledControls"></label>
-        <label><span><b>Kontrolleri her zaman göster</b><small>Oynatma çubuğu ve düğmeleri sürekli görünür kalır</small></span><input type="checkbox" data-setting="alwaysShowControls"></label>
-        <div class="group-title">Gelişmiş filtreler</div>
-        <label><span><b>Ekstra rafları gizle</b><small>Ana sayfadaki Shorts, Trending gibi ek sıraları kaldırır</small></span><input type="checkbox" data-setting="hideExtraRows"></label>
-        <label><span><b>Video sonu önerilerini gizle</b><small>Video bitince çıkan öneri duvarını kaldırır</small></span><input type="checkbox" data-setting="hideEndOfVideo"></label>
-        <label><span><b>Oynanabilir kartları gizle</b><small>Playables oyun kartlarını akıştan kaldırır</small></span><input type="checkbox" data-setting="hidePlayables"></label>
-        <label><span><b>Keşfet bağlantısını gizle</b><small>Soldaki Keşfet / Trending girişini kaldırır</small></span><input type="checkbox" data-setting="hideExploreLink"></label>
-        <label><span><b>Sonraki video düğmesini gizle</b><small>Oynatıcıdaki sonraki video düğmesini kaldırır</small></span><input type="checkbox" data-setting="hideNextButton"></label>
-        <label><span><b>Oynatıcıyı ortala</b><small>Sağdaki öneri panelini kaldırıp videoyu ortalar</small></span><input type="checkbox" data-setting="centerPlayer"></label>
-        <label><span><b>Abonelik Shorts'larını gizle</b><small>Abonelik sayfasındaki Shorts videolarını kaldırır</small></span><input type="checkbox" data-setting="hideSubShorts"></label>
-        <label><span><b>Çalma listesi önerilerini gizle</b><small>Video sayfasındaki çalma listesi önerilerini kaldırır</small></span><input type="checkbox" data-setting="hidePlaylistSuggestions"></label>
-        <label><span><b>Kelime filtresi</b><small>Başlığı bu kelimelerle eşleşen videoları gizler (* joker)</small></span><input class="keyword" type="text" data-setting="blockedKeywords" placeholder="örn. sponsor, kedi*, reklam"></label>
-      </section>
-      <section class="card preferences">
-        <div class="group-title">Oynatıcı</div>
-        <label><span><b>Varsayılan oynatma hızı</b><small>Yeni videolar bu hızla başlar</small></span><select data-setting="playbackRate"><option value="1">1x</option><option value="1.25">1.25x</option><option value="1.5">1.5x</option><option value="1.75">1.75x</option><option value="2">2x</option></select></label>
-        <label><span><b>Varsayılan ses seviyesi</b><small>Oynatıcı açıldığında kullanılacak seviye</small></span><input class="range" type="range" min="0" max="100" step="5" data-setting="defaultVolume"></label>
-        <label><span><b>Renk teması</b><small>YouTube arayüzüne hafif bir renk karakteri verir</small></span><select data-setting="theme"><option value="default">Varsayılan</option><option value="midnight">Midnight</option><option value="rose">Rose</option><option value="ocean">Ocean</option></select></label>
-      </section>
-      <p class="safe">🔒 Gizlilik öncelikli: cookie, geçmiş veya hesap verilerine erişilmez.</p>
-    </main>
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark"><img src="icons/icon.svg" alt=""></span>
+          <div>
+            <span class="eyebrow">YOUTUBE ARAÇLARI</span>
+            <h1>YüzeTube <span class="version">v1.5</span></h1>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <span id="saveState" class="save-state" aria-live="polite">✓ Kaydedildi</span>
+          <button id="resetButton" class="ghost-btn" type="button" title="Tüm ayarları varsayılana döndür">↺ Sıfırla</button>
+          <a class="round-btn" href="popup.html" title="Popup'ı aç">⌂</a>
+        </div>
+      </header>
+
+      <div class="workspace">
+        <aside class="sidebar">
+          <div class="search-wrap">
+            <span class="search-glyph">⌕</span>
+            <input id="searchInput" type="search" placeholder="Ayarlarda ara..." autocomplete="off" spellcheck="false">
+            <kbd>/</kbd>
+          </div>
+
+          <div class="chips" role="group" aria-label="Durum filtresi">
+            <button class="chip active" type="button" data-filter="all">Tümü</button>
+            <button class="chip" type="button" data-filter="on">Açık</button>
+            <button class="chip" type="button" data-filter="off">Kapalı</button>
+          </div>
+
+          <nav id="sectionNav" class="nav" aria-label="Ayar kategorileri">
+            <button class="nav-item active" type="button" data-target="sec-general"><span class="nav-ico">✦</span><span>Genel</span><span class="nav-count">6</span></button>
+            <button class="nav-item" type="button" data-target="sec-player"><span class="nav-ico">▣</span><span>Oynatıcı</span><span class="nav-count">9</span></button>
+            <button class="nav-item" type="button" data-target="sec-appearance"><span class="nav-ico">◐</span><span>Görünüm</span><span class="nav-count">7</span></button>
+            <button class="nav-item" type="button" data-target="sec-focus"><span class="nav-ico">◎</span><span>Odak</span><span class="nav-count">5</span></button>
+            <button class="nav-item" type="button" data-target="sec-filters"><span class="nav-ico">⌗</span><span>Filtreler</span><span class="nav-count">5</span></button>
+          </nav>
+
+          <div class="sidebar-foot">
+            <span class="live-dot"></span>
+            <span>Yerel depolama · Cookie yok</span>
+          </div>
+        </aside>
+
+        <main id="content" class="content">
+          <section class="hero">
+            <div class="hero-glow"></div>
+            <div class="hero-copy">
+              <span class="hero-kicker">KONTROL MERKEZİ</span>
+              <h2>YouTube'u senin gibi olsun.</h2>
+              <p>Değişiklikler anında kaydedilir ve açık YouTube sekmelerine uygulanır.</p>
+            </div>
+            <div class="hero-stats">
+              <div><strong id="statActive">0</strong><span>aktif ayar</span></div>
+              <div><strong>32</strong><span>toplam ayar</span></div>
+              <div><strong>0</strong><span>ağ isteği</span></div>
+            </div>
+          </section>
+
+          <section class="panel" id="sec-general">
+            <div class="section-head">
+              <span class="section-index">01</span>
+              <div><h2>Genel</h2><p>Temel davranış ve oynatma varsayılanları</p></div>
+              <span class="section-count">6 ayar</span>
+            </div>
+
+            <label class="row" data-row>
+              <span class="row-icon c-rose">⏻</span>
+              <span class="row-copy"><b>YüzeTube'u etkinleştir</b><small>Tüm iyileştirmelerin ana anahtarı</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="enabled"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-violet">◈</span>
+              <span class="row-copy"><b>Shorts'u gizle</b><small>Akış, arama ve sol menüdeki Shorts'ları kaldırır</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="hideShorts"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-amber">✦</span>
+              <span class="row-copy"><b>Reklam ve promosyonları gizle</b><small>Promosyon kartlarını arayüzden kaldırır</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="hidePromotions"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-blue">⏭</span>
+              <span class="row-copy"><b>Otomatik oynatmayı kapat</b><small>Video bitince sıradaki video başlamaz</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="disableAutoplay"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-mint">⊘</span>
+              <span class="row-copy"><b>Videoları sessiz başlat</b><small>Yeni videolar sessiz açılır</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="muteByDefault"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-pink">↻</span>
+              <span class="row-copy"><b>Videoları tekrarla</b><small>Video bitince başa döner</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="loopVideos"></span>
+            </label>
+          </section>
+
+          <section class="panel" id="sec-player">
+            <div class="section-head">
+              <span class="section-index">02</span>
+              <div><h2>Oynatıcı</h2><small>Video alanı, kontroller ve oynatma tercihleri</small></div>
+              <span class="section-count">9 ayar</span>
+            </div>
+
+            <label class="row" data-row>
+              <span class="row-icon c-violet">▣</span>
+              <span class="row-copy"><b>Sinema görünümü</b><small>YouTube'un gerçek sinema modunu açar</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="theaterMode"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-blue">◌</span>
+              <span class="row-copy"><b>Ambiyans ışığını kapat</b><small>Oynatıcı çevresindeki renk efektini kaldırır</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="disableAmbient"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-mint">☷</span>
+              <span class="row-copy"><b>Kontrolleri her zaman göster</b><small>Oynatma çubuğu sürekli görünür kalır</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="alwaysShowControls"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-amber">⏭</span>
+              <span class="row-copy"><b>Sonraki video düğmesini gizle</b><small>Oynatıcıdaki sonraki video düğmesini kaldırır</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="hideNextButton"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-violet">▤</span>
+              <span class="row-copy"><b>Oynatıcıyı ortala</b><small>Sağdaki öneri panelini kaldırıp videoyu ortalar</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="centerPlayer"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-rose">▦</span>
+              <span class="row-copy"><b>Video sonu önerilerini gizle</b><small>Video bitince çıkan öneri duvarını kaldırır</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="hideEndOfVideo"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-pink">◫</span>
+              <span class="row-copy"><b>Video sonu kartlarını gizle</b><small>Son ekran ve bilgi kartlarını kaldırır</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="hideEndCards"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-blue">⚡</span>
+              <span class="row-copy"><b>Varsayılan oynatma hızı</b><small>Yeni videolar bu hızla başlar</small></span>
+              <span class="row-control">
+                <select data-setting="playbackRate">
+                  <option value="1">1x</option><option value="1.25">1.25x</option>
+                  <option value="1.5">1.5x</option><option value="1.75">1.75x</option><option value="2">2x</option>
+                </select>
+              </span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-mint">◖</span>
+              <span class="row-copy"><b>Varsayılan ses seviyesi</b><small>Oynatıcı açıldığında kullanılacak seviye</small></span>
+              <span class="row-control range-control">
+                <input type="range" min="0" max="100" step="5" data-setting="defaultVolume">
+                <output class="range-value" data-for="defaultVolume">80%</output>
+              </span>
+            </label>
+          </section>
+
+          <section class="panel" id="sec-appearance">
+            <div class="section-head">
+              <span class="section-index">03</span>
+              <div><h2>Görünüm</h2><small>Yerleşim, tipografi ve renk karakteri</small></div>
+              <span class="section-count">7 ayar</span>
+            </div>
+
+            <label class="row" data-row>
+              <span class="row-icon c-pink">◰</span>
+              <span class="row-copy"><b>Yuvarlak kartlar</b><small>Küçük resimlere yumuşak köşeler ekler</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="roundedCorners"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-blue">▦</span>
+              <span class="row-copy"><b>Sıkı ana sayfa ızgarası</b><small>Geniş ekranlarda daha fazla video gösterir</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="compactGrid"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-mint">≣</span>
+              <span class="row-copy"><b>Okunaklı başlıklar</b><small>Video başlıklarını netleştirir</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="readableTitles"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-amber">✧</span>
+              <span class="row-copy"><b>Modern buton efektleri</b><small>Hover durumlarına hafif geçişler ekler</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="styledControls"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-violet">≈</span>
+              <span class="row-copy"><b>Hareketleri azalt</b><small>Geçiş ve animasyonları sadeleştirir</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="reduceMotion"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-rose">▥</span>
+              <span class="row-copy"><b>Kompakt kenar çubuğu</b><small>Sol gezinme alanını sıkılaştırır</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="compactSidebar"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-blue">◐</span>
+              <span class="row-copy"><b>Renk teması</b><small>Arayüze hafif bir renk karakteri verir</small></span>
+              <span class="row-control">
+                <select data-setting="theme">
+                  <option value="default">Varsayılan</option><option value="midnight">Midnight</option>
+                  <option value="rose">Rose</option><option value="ocean">Ocean</option>
+                </select>
+              </span>
+            </label>
+          </section>
+
+          <section class="panel" id="sec-focus">
+            <div class="section-head">
+              <span class="section-index">04</span>
+              <div><h2>Odak</h2><small>Dikkat dağıtan alanları kaldır</small></div>
+              <span class="section-count">5 ayar</span>
+            </div>
+
+            <label class="row" data-row>
+              <span class="row-icon c-violet">▭</span>
+              <span class="row-copy"><b>Yorumları gizle</b><small>Video sayfasını izlemeye odaklar</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="hideComments"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-mint">◌</span>
+              <span class="row-copy"><b>Canlı sohbeti gizle</b><small>Yayın ve premiyerlerde sohbet panelini kaldırır</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="hideLiveChat"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-blue">▤</span>
+              <span class="row-copy"><b>Öneri panelini gizle</b><small>Video sayfasındaki sağ paneli kaldırır</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="hideRelated"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-amber">⌗</span>
+              <span class="row-copy"><b>Keşif çiplerini gizle</b><small>Ana sayfadaki kategori çubuklarını kaldırır</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="hideChips"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-rose">⌖</span>
+              <span class="row-copy"><b>Keşfet bağlantısını gizle</b><small>Soldaki Keşfet / Trending girişini kaldırır</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="hideExploreLink"></span>
+            </label>
+          </section>
+
+          <section class="panel" id="sec-filters">
+            <div class="section-head">
+              <span class="section-index">05</span>
+              <div><h2>Filtreler</h2><small>İçerik bazlı gelişmiş filtreler</small></div>
+              <span class="section-count">5 ayar</span>
+            </div>
+
+            <label class="row" data-row>
+              <span class="row-icon c-amber">≣</span>
+              <span class="row-copy"><b>Ekstra rafları gizle</b><small>Ana sayfadaki Shorts, Trending gibi ek sıraları kaldırır</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="hideExtraRows"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-pink">◕</span>
+              <span class="row-copy"><b>Oynanabilir kartları gizle</b><small>Playables oyun kartlarını akıştan kaldırır</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="hidePlayables"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-violet">◈</span>
+              <span class="row-copy"><b>Abonelik Shorts'larını gizle</b><small>Yalnızca abonelikler sayfasındaki Shorts'ları kaldırır</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="hideSubShorts"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-blue">≡</span>
+              <span class="row-copy"><b>Çalma listesi önerilerini gizle</b><small>Video sayfasındaki çalma listesi önerilerini kaldırır</small></span>
+              <span class="row-control"><input type="checkbox" data-setting="hidePlaylistSuggestions"></span>
+            </label>
+            <label class="row" data-row>
+              <span class="row-icon c-mint">⌕</span>
+              <span class="row-copy"><b>Kelime filtresi</b><small>Başlığı eşleşen videoları gizler · * joker · virgülle ayır</small></span>
+              <span class="row-control"><input class="text-input" type="text" data-setting="blockedKeywords" placeholder="sponsor, kedi*, reklam"></span>
+            </label>
+          </section>
+
+          <footer class="content-foot">
+            <span class="shield">🛡</span>
+            <span>Gizlilik öncelikli · Cookie, geçmiş veya hesap verilerine erişilmez.</span>
+          </footer>
+        </main>
+      </div>
+    </div>
     <script src="settings.js"></script>
   </body>
 </html>

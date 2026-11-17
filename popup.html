@@ -8,80 +8,107 @@
   </head>
   <body>
     <main class="panel">
-      <header class="topbar">
+      <header class="pop-head">
         <div class="brand">
-          <img src="icons/icon.svg" alt="">
+          <span class="brand-mark"><img src="icons/icon.svg" alt=""></span>
           <div>
+            <span class="eyebrow">YOUTUBE ARAÇLARI</span>
             <h1>YüzeTube</h1>
-            <span>youtube için küçük dokunuşlar</span>
           </div>
         </div>
-        <button id="optionsButton" class="icon-button" type="button" aria-label="Tüm ayarları aç">⚙</button>
+        <button id="optionsButton" class="round-btn" type="button" title="Tüm ayarları aç">⚙</button>
       </header>
 
-      <section class="status-card">
-        <span class="status-dot"></span>
+      <section class="status" id="statusCard">
+        <span class="status-orb"></span>
         <div class="status-copy">
           <strong id="statusTitle">YüzeTube aktif</strong>
-          <span id="statusText">Ayarların YouTube'da uygulanıyor</span>
+          <small id="statusText">Ayarlar YouTube'da uygulanıyor</small>
         </div>
         <label class="switch" aria-label="YüzeTube'u etkinleştir">
           <input id="enabled" type="checkbox">
-          <span class="slider"></span>
+          <span class="track"></span>
         </label>
       </section>
 
-      <div class="section-heading">
+      <div class="section-label">
         <span>Hızlı ayarlar</span>
-        <span class="count">7 seçenek</span>
+        <span class="badge" id="activeCount">0 / 7</span>
       </div>
-      <section class="settings" aria-label="Hızlı ayarlar">
-        <label class="setting">
-          <span class="setting-icon shorts">◈</span>
-          <span class="setting-copy"><strong>Shorts'u gizle</strong><small>Akışta Shorts görünmesin</small></span>
-          <input type="checkbox" data-setting="hideShorts" class="check">
+
+      <div class="mini-search">
+        <span>⌕</span>
+        <input id="quickSearch" type="search" placeholder="Hızlı ayarlarda ara..." autocomplete="off" spellcheck="false">
+      </div>
+
+      <section class="quick-list" id="quickList" aria-label="Hızlı ayarlar">
+        <label class="quick" data-quick>
+          <span class="q-icon c-violet">◈</span>
+          <span class="q-copy"><b>Shorts'u gizle</b><small>Akışta Shorts görünmesin</small></span>
+          <input type="checkbox" data-setting="hideShorts">
         </label>
-        <label class="setting">
-          <span class="setting-icon promos">✦</span>
-          <span class="setting-copy"><strong>Promosyonları gizle</strong><small>İçerik dışı kartları kaldır</small></span>
-          <input type="checkbox" data-setting="hidePromotions" class="check">
+        <label class="quick" data-quick>
+          <span class="q-icon c-amber">✦</span>
+          <span class="q-copy"><b>Promosyonları gizle</b><small>İçerik dışı kartları kaldır</small></span>
+          <input type="checkbox" data-setting="hidePromotions">
         </label>
-        <label class="setting">
-          <span class="setting-icon theater">▣</span>
-          <span class="setting-copy"><strong>Sinema görünümü</strong><small>Video alanını genişlet</small></span>
-          <input type="checkbox" data-setting="theaterMode" class="check">
+        <label class="quick" data-quick>
+          <span class="q-icon c-pink">▣</span>
+          <span class="q-copy"><b>Sinema görünümü</b><small>Video alanını genişlet</small></span>
+          <input type="checkbox" data-setting="theaterMode">
         </label>
-        <label class="setting">
-          <span class="setting-icon ambient">◌</span>
-          <span class="setting-copy"><strong>Ambiyans ışığını kapat</strong><small>Oynatıcı çevresini sadeleştir</small></span>
-          <input type="checkbox" data-setting="disableAmbient" class="check">
+        <label class="quick" data-quick>
+          <span class="q-icon c-blue">◌</span>
+          <span class="q-copy"><b>Ambiyans ışığını kapat</b><small>Oynatıcı çevresini sadeleştir</small></span>
+          <input type="checkbox" data-setting="disableAmbient">
         </label>
-        <label class="setting">
-          <span class="setting-icon autoplay">⏭</span>
-          <span class="setting-copy"><strong>Otomatik oynatmayı kapat</strong><small>Sıradaki video başlamasın</small></span>
-          <input type="checkbox" data-setting="disableAutoplay" class="check">
+        <label class="quick" data-quick>
+          <span class="q-icon c-amber">⏭</span>
+          <span class="q-copy"><b>Otomatik oynatmayı kapat</b><small>Sıradaki video başlamasın</small></span>
+          <input type="checkbox" data-setting="disableAutoplay">
         </label>
-        <label class="setting">
-          <span class="setting-icon mute">⊘</span>
-          <span class="setting-copy"><strong>Sessiz başlat</strong><small>Videolar sessiz açılsın</small></span>
-          <input type="checkbox" data-setting="muteByDefault" class="check">
+        <label class="quick" data-quick>
+          <span class="q-icon c-mint">⊘</span>
+          <span class="q-copy"><b>Sessiz başlat</b><small>Videolar sessiz açılsın</small></span>
+          <input type="checkbox" data-setting="muteByDefault">
         </label>
-        <label class="setting">
-          <span class="setting-icon loop">↻</span>
-          <span class="setting-copy"><strong>Videoyu tekrarla</strong><small>Bitince başa dönsün</small></span>
-          <input type="checkbox" data-setting="loopVideos" class="check">
+        <label class="quick" data-quick>
+          <span class="q-icon c-violet">↻</span>
+          <span class="q-copy"><b>Videoyu tekrarla</b><small>Bitince başa dönsün</small></span>
+          <input type="checkbox" data-setting="loopVideos">
         </label>
       </section>
+      <p id="emptyQuick" class="empty" hidden>Bu aramayla eşleşen ayar yok.</p>
 
-      <button id="advancedButton" class="advanced-button" type="button">
-        <span class="advanced-icon">☷</span>
-        <span><strong>Tüm ayarlar</strong><small>Tema, oynatıcı ve görünüm seçenekleri</small></span>
-        <span class="arrow">›</span>
+      <div class="section-label compact"><span>Oynatma tercihleri</span></div>
+      <section class="prefs">
+        <div class="pref">
+          <span class="pref-icon">⚡</span>
+          <span class="pref-copy"><b>Hız</b><small>Varsayılan oynatma hızı</small></span>
+          <select data-setting="playbackRate">
+            <option value="1">1x</option><option value="1.25">1.25x</option>
+            <option value="1.5">1.5x</option><option value="1.75">1.75x</option><option value="2">2x</option>
+          </select>
+        </div>
+        <div class="pref">
+          <span class="pref-icon">◖</span>
+          <span class="pref-copy"><b>Ses</b><small>Varsayılan seviye</small></span>
+          <span class="vol">
+            <input type="range" min="0" max="100" step="5" data-setting="defaultVolume">
+            <output id="volumeOut">80%</output>
+          </span>
+        </div>
+      </section>
+
+      <button id="advancedButton" class="all-btn" type="button">
+        <span class="all-icon">☷</span>
+        <span class="all-copy"><b>Tüm ayarlar</b><small>32 ayarın tamamı · tema, filtreler ve daha fazlası</small></span>
+        <span class="chev">›</span>
       </button>
 
       <footer>
         <span><i class="privacy-dot"></i> Yerel ve gizli</span>
-        <span class="footer-divider">·</span>
+        <span class="divider">·</span>
         <span>Cookie erişimi yok</span>
       </footer>
       <p id="notYoutube" class="notice" hidden>YouTube sekmesi açık olduğunda ayarlar anında uygulanır.</p>
