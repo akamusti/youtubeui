@@ -10,6 +10,13 @@ const DEFAULTS = {
   reduceMotion: false,
   compactSidebar: false,
   hideRelated: false,
+  disableAutoplay: false,
+  muteByDefault: false,
+  loopVideos: false,
+  alwaysShowControls: false,
+  hideEndCards: false,
+  hideLiveChat: false,
+  hideChips: false,
 };
 
 const enabled = document.querySelector("#enabled");

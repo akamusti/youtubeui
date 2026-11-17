@@ -4,9 +4,11 @@ YouTube arayüzünü sadeleştiren, Manifest V3 tabanlı bir tarayıcı eklentis
 
 ## Öne çıkanlar
 
-- Popup üzerinden hızlı ayarlar
-- Shorts, promosyon, ambiyans ışığı ve sinema görünümü kontrolleri
-- Yuvarlak kartlar, sıkı ızgara, yorumları gizleme ve hareket azaltma
+- Popup üzerinden hızlı ayarlar ve tüm seçenekler için ayarlar sayfası
+- Shorts, promosyon, ambiyans ışığı ve **gerçek** sinema modu (YouTube'un kendi kontrolü)
+- Otomatik oynatmayı kapatma, sessiz başlatma ve video tekrarlama
+- Video sonu kartları, canlı sohbet ve keşif çiplerini gizleme
+- Kontrolleri her zaman gösterme, yuvarlak kartlar, sıkı ızgara, yorumları gizleme ve hareket azaltma
 - Oynatma hızı, ses seviyesi, renk teması, kompakt kenar çubuğu ve öneri paneli kontrolleri
 - YouTube'un SPA navigasyonlarına uyumlu
 - Cookie, geçmiş, hesap verisi veya ağ erişimi yok

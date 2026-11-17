@@ -19,15 +19,26 @@ html [data-yuzetube-hidden="shorts-menu"],
 html [data-yuzetube-hidden="promotion"] {
   display: none !important;
 }
-html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #player-container-outer,
-html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #player-theater-container,
-html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #player-container-inner,
-html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #player {
-  width: 100% !important;
-  max-width: none !important;
+/* Theater mode is enabled through YouTube's own player control in content.js.
+   No layout override here, so the genuine player state is never fought. */
+html.yuzetube-hide-chips ytd-chip-cloud-renderer,
+html.yuzetube-hide-chips ytd-feed-filter-chip-bar-renderer {
+  display: none !important;
 }
-html.yuzetube-theater ytd-watch-flexy:not([fullscreen]) #player-container-outer {
-  margin-inline: 0 !important;
+html.yuzetube-hide-end-cards .ytp-endscreen-content,
+html.yuzetube-hide-end-cards .ytp-ce-element,
+html.yuzetube-hide-end-cards .ytp-cards-teaser {
+  display: none !important;
+}
+html.yuzetube-hide-live-chat ytd-live-chat-frame,
+html.yuzetube-hide-live-chat #chat-container,
+html.yuzetube-hide-live-chat ytd-watch-flexy #chat {
+  display: none !important;
+}
+html.yuzetube-show-controls .ytp-chrome-bottom,
+html.yuzetube-show-controls .ytp-chrome-top {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 html.yuzetube-no-ambient ytd-watch-flexy #cinematics,
 html.yuzetube-no-ambient ytd-watch-flexy #player-container-outer .ytp-gradient-top,

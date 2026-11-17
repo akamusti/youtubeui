@@ -15,6 +15,13 @@ const DEFAULTS = {
   playbackRate: 1,
   defaultVolume: 80,
   theme: "default",
+  disableAutoplay: false,
+  muteByDefault: false,
+  loopVideos: false,
+  alwaysShowControls: false,
+  hideEndCards: false,
+  hideLiveChat: false,
+  hideChips: false,
 };
 const inputs = [...document.querySelectorAll("[data-setting]")];
 function render(config) {

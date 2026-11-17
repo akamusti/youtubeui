@@ -48,6 +48,9 @@ button { font: inherit; cursor: pointer; }
 .setting-icon.promos { color: #ffb85b; background: rgba(255, 184, 91, .12); }
 .setting-icon.theater { color: #b49bff; background: rgba(180, 155, 255, .13); }
 .setting-icon.ambient { color: #68c7ff; background: rgba(104, 199, 255, .12); }
+.setting-icon.autoplay { color: #ffb85b; background: rgba(255, 184, 91, .12); }
+.setting-icon.mute { color: #7ad6a6; background: rgba(122, 214, 166, .12); }
+.setting-icon.loop { color: #ff9ecd; background: rgba(255, 158, 205, .12); }
 .setting-copy { min-width: 0; flex: 1; }
 .setting-copy strong, .setting-copy small { display: block; }
 .setting-copy strong { font-size: 11px; font-weight: 650; }

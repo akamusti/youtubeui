@@ -15,11 +15,21 @@ const DEFAULTS = {
   playbackRate: 1,
   defaultVolume: 80,
   theme: "default",
+  disableAutoplay: false,
+  muteByDefault: false,
+  loopVideos: false,
+  alwaysShowControls: false,
+  hideEndCards: false,
+  hideLiveChat: false,
+  hideChips: false,
 };
 
 let root = document.documentElement;
 let currentConfig = DEFAULTS;
 let refreshQueued = false;
+let playerSyncTimer = null;
+let lastVideoApplied = null;
+let theaterAppliedByUs = false;
 
 function apply(config) {
   currentConfig = { ...DEFAULTS, ...config };
@@ -42,19 +52,116 @@ function apply(config) {
   root.classList.toggle("yuzetube-hide-related", active && currentConfig.hideRelated);
   root.classList.toggle("yuzetube-readable-titles", active && currentConfig.readableTitles);
   root.classList.toggle("yuzetube-styled-controls", active && currentConfig.styledControls);
+  root.classList.toggle("yuzetube-hide-chips", active && currentConfig.hideChips);
+  root.classList.toggle("yuzetube-hide-end-cards", active && currentConfig.hideEndCards);
+  root.classList.toggle("yuzetube-hide-live-chat", active && currentConfig.hideLiveChat);
+  root.classList.toggle("yuzetube-show-controls", active && currentConfig.alwaysShowControls);
   for (const theme of ["midnight", "rose", "ocean"]) {
     root.classList.toggle(`yuzetube-theme-${theme}`, active && currentConfig.theme === theme);
   }
-  applyVideoPreferences(active, currentConfig);
+  // The player is created asynchronously, so sync preferences with a short poll.
+  lastVideoApplied = null;
+  schedulePlayerSync();
   refreshDynamicUi();
+}
+
+function clamp01(value) {
+  return Math.min(1, Math.max(0, value));
 }
 
 function applyVideoPreferences(active, config) {
   if (!active) return;
   const video = document.querySelector("video.html5-main-video, video");
-  if (!video) return;
-  if (Number.isFinite(Number(config.playbackRate))) video.playbackRate = Number(config.playbackRate);
-  if (Number.isFinite(Number(config.defaultVolume))) video.volume = Math.min(1, Math.max(0, Number(config.defaultVolume) / 100));
+  if (!video || video === lastVideoApplied) return;
+  lastVideoApplied = video;
+  if (config.playbackRate != null && Number.isFinite(Number(config.playbackRate))) {
+    video.playbackRate = Number(config.playbackRate);
+  }
+  if (config.defaultVolume != null && Number.isFinite(Number(config.defaultVolume))) {
+    video.volume = clamp01(Number(config.defaultVolume) / 100);
+  }
+  if (config.muteByDefault) video.muted = true;
+  if (config.loopVideos) video.loop = true;
+}
+
+// YouTube's real theater mode is driven by the player's own control, not CSS width.
+// Clicking it is the same action a user takes, so YouTube keeps its own state/cookie intact.
+function theaterState() {
+  const flexy = document.querySelector("ytd-watch-flexy");
+  if (flexy) {
+    if (flexy.theater === true || flexy.theater === "true") return true;
+    if (flexy.theater === false || flexy.theater === "false") return false;
+    if (flexy.hasAttribute("theater")) {
+      const value = flexy.getAttribute("theater");
+      if (value === "false") return false;
+      return true; // bare attribute or "true"
+    }
+  }
+  const masthead = document.querySelector("#masthead");
+  if (masthead) {
+    const value = masthead.getAttribute("theater");
+    if (value === "" || value === "true") return true;
+    if (value === "false") return false;
+  }
+  const button = document.querySelector(".ytp-size-button");
+  if (button) {
+    const label = `${button.getAttribute("aria-label") || ""} ${button.getAttribute("title") || ""}`.toLowerCase();
+    if (label.includes("default")) return true;
+    if (label.includes("theater")) return false;
+  }
+  return null;
+}
+
+function applyTheaterMode(active) {
+  const want = active && currentConfig.theaterMode === true;
+  const state = theaterState();
+  if (!want) {
+    if (theaterAppliedByUs && state === true) {
+      const button = document.querySelector(".ytp-size-button");
+      if (button) {
+        button.click();
+        theaterAppliedByUs = false;
+      }
+    }
+    return;
+  }
+  if (state === true) {
+    theaterAppliedByUs = true;
+    return;
+  }
+  if (state === null) return; // state not readable yet, don't risk a wrong toggle
+  const button = document.querySelector(".ytp-size-button");
+  if (!button) return;
+  button.click();
+  theaterAppliedByUs = true;
+}
+
+function applyAutoplay(active) {
+  if (!active || !currentConfig.disableAutoplay) return;
+  const button = document.querySelector("button.ytp-button[data-tooltip-target-id='ytp-autonav-toggle-button']");
+  if (!button) return;
+  const label = `${button.getAttribute("aria-label") || ""} ${button.getAttribute("title") || ""}`.toLowerCase();
+  const isOn = /autoplay\s+is\s+on/.test(label) || button.getAttribute("aria-checked") === "true";
+  if (isOn) button.click();
+}
+
+function schedulePlayerSync() {
+  if (playerSyncTimer) clearInterval(playerSyncTimer);
+  let tries = 0;
+  playerSyncTimer = setInterval(() => {
+    tries++;
+    const active = currentConfig.enabled !== false;
+    applyVideoPreferences(active, currentConfig);
+    applyTheaterMode(active);
+    applyAutoplay(active);
+    const wantTheater = active && currentConfig.theaterMode === true;
+    const theaterDone = wantTheater ? theaterState() === true : !theaterAppliedByUs;
+    const videoReady = Boolean(document.querySelector("video"));
+    if ((theaterDone && videoReady && tries >= 2) || tries >= 48) {
+      clearInterval(playerSyncTimer);
+      playerSyncTimer = null;
+    }
+  }, 250);
 }
 
 chrome.storage.local.get(DEFAULTS, apply);
