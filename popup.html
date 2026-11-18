@@ -8,110 +8,98 @@
   </head>
   <body>
     <main class="panel">
-      <header class="pop-head">
-        <div class="brand">
-          <span class="brand-mark"><img src="icons/icon.svg" alt=""></span>
-          <div>
-            <span class="eyebrow">YOUTUBE ARAÇLARI</span>
-            <h1>YüzeTube</h1>
+      <header class="hero" id="statusCard">
+        <div class="hero-top">
+          <div class="brand">
+            <span class="brand-mark"><img src="icons/icon.svg" alt=""></span>
+            <div>
+              <h1>YüzeTube</h1>
+              <small id="statusText">YouTube'da etkin</small>
+            </div>
           </div>
+          <label class="power" title="YüzeTube'u aç / kapat" aria-label="YüzeTube'u etkinleştir">
+            <input id="enabled" type="checkbox">
+            <span class="power-ring">⏻</span>
+          </label>
         </div>
-        <button id="optionsButton" class="round-btn" type="button" title="Tüm ayarları aç">⚙</button>
+        <div class="meter">
+          <div class="meter-bar"><span id="meterFill"></span></div>
+          <span class="meter-text"><b id="activeCount">0</b> / <span id="totalCount">8</span> hızlı ayar açık</span>
+        </div>
       </header>
 
-      <section class="status" id="statusCard">
-        <span class="status-orb"></span>
-        <div class="status-copy">
-          <strong id="statusTitle">YüzeTube aktif</strong>
-          <small id="statusText">Ayarlar YouTube'da uygulanıyor</small>
-        </div>
-        <label class="switch" aria-label="YüzeTube'u etkinleştir">
-          <input id="enabled" type="checkbox">
-          <span class="track"></span>
-        </label>
-      </section>
-
-      <div class="section-label">
-        <span>Hızlı ayarlar</span>
-        <span class="badge" id="activeCount">0 / 7</span>
-      </div>
-
-      <div class="mini-search">
-        <span>⌕</span>
-        <input id="quickSearch" type="search" placeholder="Hızlı ayarlarda ara..." autocomplete="off" spellcheck="false">
-      </div>
-
-      <section class="quick-list" id="quickList" aria-label="Hızlı ayarlar">
-        <label class="quick" data-quick>
-          <span class="q-icon c-violet">◈</span>
-          <span class="q-copy"><b>Shorts'u gizle</b><small>Akışta Shorts görünmesin</small></span>
+      <h2 class="label">Hızlı ayarlar</h2>
+      <section class="tiles" aria-label="Hızlı ayarlar">
+        <label class="tile" data-quick style="--hue: 262">
           <input type="checkbox" data-setting="hideShorts">
+          <span class="tile-icon">◈</span>
+          <b>Shorts'u gizle</b>
         </label>
-        <label class="quick" data-quick>
-          <span class="q-icon c-amber">✦</span>
-          <span class="q-copy"><b>Promosyonları gizle</b><small>İçerik dışı kartları kaldır</small></span>
+        <label class="tile" data-quick style="--hue: 36">
           <input type="checkbox" data-setting="hidePromotions">
+          <span class="tile-icon">✦</span>
+          <b>Promosyonlar</b>
         </label>
-        <label class="quick" data-quick>
-          <span class="q-icon c-pink">▣</span>
-          <span class="q-copy"><b>Sinema görünümü</b><small>Video alanını genişlet</small></span>
+        <label class="tile" data-quick style="--hue: 330">
           <input type="checkbox" data-setting="theaterMode">
+          <span class="tile-icon">▣</span>
+          <b>Sinema modu</b>
         </label>
-        <label class="quick" data-quick>
-          <span class="q-icon c-blue">◌</span>
-          <span class="q-copy"><b>Ambiyans ışığını kapat</b><small>Oynatıcı çevresini sadeleştir</small></span>
+        <label class="tile" data-quick style="--hue: 205">
           <input type="checkbox" data-setting="disableAmbient">
+          <span class="tile-icon">◌</span>
+          <b>Ambiyans kapalı</b>
         </label>
-        <label class="quick" data-quick>
-          <span class="q-icon c-amber">⏭</span>
-          <span class="q-copy"><b>Otomatik oynatmayı kapat</b><small>Sıradaki video başlamasın</small></span>
+        <label class="tile" data-quick style="--hue: 352">
+          <input type="checkbox" data-setting="compactSidebar">
+          <span class="tile-icon">▥</span>
+          <b>Kompakt menü</b>
+        </label>
+        <label class="tile" data-quick style="--hue: 20">
           <input type="checkbox" data-setting="disableAutoplay">
+          <span class="tile-icon">⏭</span>
+          <b>Autoplay kapalı</b>
         </label>
-        <label class="quick" data-quick>
-          <span class="q-icon c-mint">⊘</span>
-          <span class="q-copy"><b>Sessiz başlat</b><small>Videolar sessiz açılsın</small></span>
+        <label class="tile" data-quick style="--hue: 158">
           <input type="checkbox" data-setting="muteByDefault">
+          <span class="tile-icon">⊘</span>
+          <b>Sessiz başlat</b>
         </label>
-        <label class="quick" data-quick>
-          <span class="q-icon c-violet">↻</span>
-          <span class="q-copy"><b>Videoyu tekrarla</b><small>Bitince başa dönsün</small></span>
+        <label class="tile" data-quick style="--hue: 280">
           <input type="checkbox" data-setting="loopVideos">
+          <span class="tile-icon">↻</span>
+          <b>Videoyu tekrarla</b>
         </label>
       </section>
-      <p id="emptyQuick" class="empty" hidden>Bu aramayla eşleşen ayar yok.</p>
 
-      <div class="section-label compact"><span>Oynatma tercihleri</span></div>
-      <section class="prefs">
-        <div class="pref">
-          <span class="pref-icon">⚡</span>
-          <span class="pref-copy"><b>Hız</b><small>Varsayılan oynatma hızı</small></span>
-          <select data-setting="playbackRate">
-            <option value="1">1x</option><option value="1.25">1.25x</option>
-            <option value="1.5">1.5x</option><option value="1.75">1.75x</option><option value="2">2x</option>
-          </select>
+      <h2 class="label">Oynatma</h2>
+      <section class="card">
+        <div class="row">
+          <span class="row-title">Hız</span>
+          <div class="segmented" id="rateGroup" role="radiogroup" aria-label="Varsayılan oynatma hızı">
+            <button type="button" data-rate="1">1×</button>
+            <button type="button" data-rate="1.25">1.25</button>
+            <button type="button" data-rate="1.5">1.5</button>
+            <button type="button" data-rate="1.75">1.75</button>
+            <button type="button" data-rate="2">2×</button>
+          </div>
         </div>
-        <div class="pref">
-          <span class="pref-icon">◖</span>
-          <span class="pref-copy"><b>Ses</b><small>Varsayılan seviye</small></span>
-          <span class="vol">
-            <input type="range" min="0" max="100" step="5" data-setting="defaultVolume">
-            <output id="volumeOut">80%</output>
-          </span>
+        <div class="row">
+          <span class="row-title">Ses</span>
+          <input id="volume" type="range" min="0" max="100" step="5" data-setting="defaultVolume">
+          <output id="volumeOut">80%</output>
         </div>
       </section>
+
+      <p id="notYoutube" class="notice" hidden>Ayarlar bir YouTube sekmesinde anında uygulanır.</p>
 
       <button id="advancedButton" class="all-btn" type="button">
-        <span class="all-icon">☷</span>
-        <span class="all-copy"><b>Tüm ayarlar</b><small>32 ayarın tamamı · tema, filtreler ve daha fazlası</small></span>
-        <span class="chev">›</span>
+        <span>Tüm ayarlar</span>
+        <small>tema, filtreler, anahtar kelimeler</small>
+        <span class="chev">→</span>
       </button>
 
-      <footer>
-        <span><i class="privacy-dot"></i> Yerel ve gizli</span>
-        <span class="divider">·</span>
-        <span>Cookie erişimi yok</span>
-      </footer>
-      <p id="notYoutube" class="notice" hidden>YouTube sekmesi açık olduğunda ayarlar anında uygulanır.</p>
+      <footer><i class="dot"></i> Yerel çalışır · veri toplamaz</footer>
     </main>
     <script src="popup.js"></script>
   </body>

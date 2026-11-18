@@ -289,6 +289,13 @@ function refreshDynamicUi() {
         element.removeAttribute("data-yuzetube-hidden");
       }
     });
+    if (active && currentConfig.compactSidebar) {
+      document.querySelectorAll("ytd-guide-entry-renderer a#endpoint, ytd-mini-guide-entry-renderer a#endpoint").forEach((link) => {
+        if (link.hasAttribute("title")) return;
+        const label = (link.querySelector(".title")?.textContent || link.getAttribute("aria-label") || "").trim();
+        if (label) link.setAttribute("title", label);
+      });
+    }
     document.querySelectorAll("ytd-ad-slot-renderer, ytd-in-feed-ad-layout-renderer, ytd-promoted-sparkles-web-renderer").forEach((element) => {
       if (active && currentConfig.hidePromotions) {
         element.setAttribute("data-yuzetube-hidden", "promotion");
